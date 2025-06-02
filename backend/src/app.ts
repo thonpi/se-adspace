@@ -31,6 +31,10 @@ app.use(
 // Swagger route
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
+app.get('/backend-service-port', (req, res) => {
+  res.json({ port: process.env.PORT || 'unknown' });
+});
+
 app.use(express.json());
 app.use(publicRouter);
 app.use(router);
