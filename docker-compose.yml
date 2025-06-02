@@ -31,7 +31,7 @@ services:
     ports:
       - "3003:3003"
     environment:
-      - PORT=3001
+      - PORT=3003
     env_file:
       - ./backend/.env.production
     networks:
