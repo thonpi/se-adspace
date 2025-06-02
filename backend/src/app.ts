@@ -8,11 +8,25 @@ const swaggerSpec = require('./swaggerConfig');
 import router from './routers';
 import env from './utils/env';
 import publicRouter from './routers/public-router';
+import e from 'express';
 
 const app = express();
 
 app.use(express.static('public'));
-app.use(cors());
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true); // allow non-browser requests like Postman
+      if (env.ALLOWED_ORIGINS.indexOf(origin) === -1) {
+        const msg =
+          'The CORS policy for this site does not allow access from the specified Origin.';
+        return callback(new Error(msg), false);
+      }
+      return callback(null, true);
+    },
+    credentials: true, // if you use cookies/auth
+  })
+);
 
 // Swagger route
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
