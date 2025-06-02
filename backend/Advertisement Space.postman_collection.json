@@ -1,0 +1,1053 @@
+{
+	"info": {
+		"_postman_id": "b43453ce-aca2-4c19-b710-88cc638b5009",
+		"name": "Advertisement Space",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20941515"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Thon\",\n    \"lastName\": \"User\",\n    \"phoneNumber\": \"0973265166\",\n    \"password\": \"123456\",\n    \"roles\": \"USER\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-user-profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NzEwNzQ1YmYzYjQ2Y2Q2NzgzNmRjMiIsInBob25lTnVtYmVyIjoiMDk3MzI2NTE2NiIsImlhdCI6MTczNTQ2MTU5MSwiZXhwIjoxODIxODYxNTkxfQ.2HxoAUWGES1eA_EtXOvcNojRBlEcAVS9j5FHjDrzbyc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"67710745bf3b46cd67836dc2\",\n    \"firstName\": \"Thon\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user-profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user-profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-user-profile",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NzEwNzQ1YmYzYjQ2Y2Q2NzgzNmRjMiIsInBob25lTnVtYmVyIjoiMDk3MzI2NTE2NiIsImlhdCI6MTczNTQ2MTU5MSwiZXhwIjoxODIxODYxNTkxfQ.2HxoAUWGES1eA_EtXOvcNojRBlEcAVS9j5FHjDrzbyc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"67710745bf3b46cd67836dc2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user-profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user-profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user-pagination",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NzExNDhlZmE2MzY3OWY2YmI2YzEzNyIsInBob25lTnVtYmVyIjoiMDk3MzI2NTE2NiIsImlhdCI6MTczNTQ2NDA3OCwiZXhwIjoxODIxODY0MDc4fQ.vfVUykYyjA7ojMvqunXCt0GfC28aYhUzyidMKPlCSQc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"67710745bf3b46cd67836dc2\",\n    \"firstName\": \"Thon\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users?limit=1&lastName=User",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "1"
+								},
+								{
+									"key": "lastName",
+									"value": "User"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phoneNumber\": \"0973265166\",\n    \"password\": \"qwerty\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NzEwNzQ1YmYzYjQ2Y2Q2NzgzNmRjMiIsInBob25lTnVtYmVyIjoiMDk3MzI2NTE2NiIsImlhdCI6MTczNTQ2MDY4NSwiZXhwIjoxODIxODYwNjg1fQ.BX_uHcCG_A-CNpJzZY7HdLJ0F7PJYcejgcD6KSPqeLA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": \"67710745bf3b46cd67836dc2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forgot-password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phoneNumber\": \"0973265166\",\n    \"password\": \"qwerty\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/forgot-password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"forgot-password"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Advertisement Sapce",
+			"item": [
+				{
+					"name": "advertisement-space-pagination",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NzExNDhlZmE2MzY3OWY2YmI2YzEzNyIsInBob25lTnVtYmVyIjoiMDk3MzI2NTE2NiIsImlhdCI6MTczNTQ2NDA3OCwiZXhwIjoxODIxODY0MDc4fQ.vfVUykYyjA7ojMvqunXCt0GfC28aYhUzyidMKPlCSQc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"67710745bf3b46cd67836dc2\",\n    \"firstName\": \"Thon\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/advertisement-spaces?limit=1&name=edited",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"advertisement-spaces"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "1"
+								},
+								{
+									"key": "name",
+									"value": "edited"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-all-advertisement-spaces",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NzExNDhlZmE2MzY3OWY2YmI2YzEzNyIsInBob25lTnVtYmVyIjoiMDk3MzI2NTE2NiIsImlhdCI6MTczNTQ2NDA3OCwiZXhwIjoxODIxODY0MDc4fQ.vfVUykYyjA7ojMvqunXCt0GfC28aYhUzyidMKPlCSQc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"67710745bf3b46cd67836dc2\",\n    \"firstName\": \"Thon\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/get-all-advertisement-spaces?name=edited",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"get-all-advertisement-spaces"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "edited"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create-advertisement-space",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NzExNDhlZmE2MzY3OWY2YmI2YzEzNyIsInBob25lTnVtYmVyIjoiMDk3MzI2NTE2NiIsInJvbGVzIjpbIlVTRVIiXSwiaWF0IjoxNzM1NDcwMjcwLCJleHAiOjE4MjE4NzAyNzB9.yShV2blWxuAf1jAZ90vCKO8BUYz2eIXDKWHizpItLx4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ownerId\": \"6771148efa63679f6bb6c137\",\n    \"name\": \"Space 2\",\n    \"description\": \"My space 2\",\n    \"latitude\": 1000,\n    \"longitude\": 1001,\n    \"width\": 2,\n    \"height\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/advertisement-spaces",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"advertisement-spaces"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-advertisement-space",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NzExNDhlZmE2MzY3OWY2YmI2YzEzNyIsInBob25lTnVtYmVyIjoiMDk3MzI2NTE2NiIsInJvbGVzIjpbIlVTRVIiXSwiaWF0IjoxNzM1NDcwMjcwLCJleHAiOjE4MjE4NzAyNzB9.yShV2blWxuAf1jAZ90vCKO8BUYz2eIXDKWHizpItLx4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"67712de9e0c9816f1169622c\",\n    \"name\": \"Space 2 edited\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/advertisement-spaces",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"advertisement-spaces"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-advertisement-space-by-id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NzExNDhlZmE2MzY3OWY2YmI2YzEzNyIsInBob25lTnVtYmVyIjoiMDk3MzI2NTE2NiIsInJvbGVzIjpbIlVTRVIiXSwiaWF0IjoxNzM1NDcwMjcwLCJleHAiOjE4MjE4NzAyNzB9.yShV2blWxuAf1jAZ90vCKO8BUYz2eIXDKWHizpItLx4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"67712de9e0c9816f1169622cs\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/get-advertisement-space-by-id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"get-advertisement-space-by-id"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-advertisement-space",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NzExNDhlZmE2MzY3OWY2YmI2YzEzNyIsInBob25lTnVtYmVyIjoiMDk3MzI2NTE2NiIsInJvbGVzIjpbIlVTRVIiXSwiaWF0IjoxNzM1NDcwMjcwLCJleHAiOjE4MjE4NzAyNzB9.yShV2blWxuAf1jAZ90vCKO8BUYz2eIXDKWHizpItLx4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"67712de9e0c9816f1169622c\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/advertisement-spaces",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"advertisement-spaces"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Rental Space",
+			"item": [
+				{
+					"name": "rental-space-pagination",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NzExNDhlZmE2MzY3OWY2YmI2YzEzNyIsInBob25lTnVtYmVyIjoiMDk3MzI2NTE2NiIsImlhdCI6MTczNTQ2NDA3OCwiZXhwIjoxODIxODY0MDc4fQ.vfVUykYyjA7ojMvqunXCt0GfC28aYhUzyidMKPlCSQc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"67710745bf3b46cd67836dc2\",\n    \"firstName\": \"Thon\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/rental-spaces?limit=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"rental-spaces"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-all-rental-spaces",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NzExNDhlZmE2MzY3OWY2YmI2YzEzNyIsInBob25lTnVtYmVyIjoiMDk3MzI2NTE2NiIsImlhdCI6MTczNTQ2NDA3OCwiZXhwIjoxODIxODY0MDc4fQ.vfVUykYyjA7ojMvqunXCt0GfC28aYhUzyidMKPlCSQc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"67710745bf3b46cd67836dc2\",\n    \"firstName\": \"Thon\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/get-all-rental-spaces",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"get-all-rental-spaces"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create-rental-space",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NzExNDhlZmE2MzY3OWY2YmI2YzEzNyIsInBob25lTnVtYmVyIjoiMDk3MzI2NTE2NiIsInJvbGVzIjpbIlVTRVIiXSwiaWF0IjoxNzM1NDcwMjcwLCJleHAiOjE4MjE4NzAyNzB9.yShV2blWxuAf1jAZ90vCKO8BUYz2eIXDKWHizpItLx4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"spaceId\": \"67712de9e0c9816f1169622c\",\n    \"monthlyPrice\": 15,\n    \"yearlyPrice\":  100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/rental-spaces",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"rental-spaces"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-rental-space",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NzExNDhlZmE2MzY3OWY2YmI2YzEzNyIsInBob25lTnVtYmVyIjoiMDk3MzI2NTE2NiIsInJvbGVzIjpbIlVTRVIiXSwiaWF0IjoxNzM1NDcwMjcwLCJleHAiOjE4MjE4NzAyNzB9.yShV2blWxuAf1jAZ90vCKO8BUYz2eIXDKWHizpItLx4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"67715fe48477c17ff2117ee2\",\n    \"yearlyPrice\": 90\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/rental-spaces",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"rental-spaces"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-rental-space-by-id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NzExNDhlZmE2MzY3OWY2YmI2YzEzNyIsInBob25lTnVtYmVyIjoiMDk3MzI2NTE2NiIsInJvbGVzIjpbIlVTRVIiXSwiaWF0IjoxNzM1NDcwMjcwLCJleHAiOjE4MjE4NzAyNzB9.yShV2blWxuAf1jAZ90vCKO8BUYz2eIXDKWHizpItLx4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"67715fe48477c17ff2117ee2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/get-rental-space-by-id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"get-rental-space-by-id"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-rental-space",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NzExNDhlZmE2MzY3OWY2YmI2YzEzNyIsInBob25lTnVtYmVyIjoiMDk3MzI2NTE2NiIsInJvbGVzIjpbIlVTRVIiXSwiaWF0IjoxNzM1NDcwMjcwLCJleHAiOjE4MjE4NzAyNzB9.yShV2blWxuAf1jAZ90vCKO8BUYz2eIXDKWHizpItLx4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"67715fe48477c17ff2117ee2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/rental-spaces",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"rental-spaces"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Design Job",
+			"item": [
+				{
+					"name": "rental-space-pagination",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NzExNDhlZmE2MzY3OWY2YmI2YzEzNyIsInBob25lTnVtYmVyIjoiMDk3MzI2NTE2NiIsImlhdCI6MTczNTQ2NDA3OCwiZXhwIjoxODIxODY0MDc4fQ.vfVUykYyjA7ojMvqunXCt0GfC28aYhUzyidMKPlCSQc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"67710745bf3b46cd67836dc2\",\n    \"firstName\": \"Thon\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/rental-spaces?limit=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"rental-spaces"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-all-design-jobs",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NzExNDhlZmE2MzY3OWY2YmI2YzEzNyIsInBob25lTnVtYmVyIjoiMDk3MzI2NTE2NiIsImlhdCI6MTczNTQ2NDA3OCwiZXhwIjoxODIxODY0MDc4fQ.vfVUykYyjA7ojMvqunXCt0GfC28aYhUzyidMKPlCSQc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/get-all-design-jobs",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"get-all-design-jobs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create-rental-space",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NzExNDhlZmE2MzY3OWY2YmI2YzEzNyIsInBob25lTnVtYmVyIjoiMDk3MzI2NTE2NiIsInJvbGVzIjpbIlVTRVIiXSwiaWF0IjoxNzM1NDcwMjcwLCJleHAiOjE4MjE4NzAyNzB9.yShV2blWxuAf1jAZ90vCKO8BUYz2eIXDKWHizpItLx4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"rentalSpaceId\": \"67715fe48477c17ff2117ee2\",\n    \"budget\": 150,\n    \"requirement\":  \"bla bla\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/design-jobs",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"design-jobs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-design-job",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NzExNDhlZmE2MzY3OWY2YmI2YzEzNyIsInBob25lTnVtYmVyIjoiMDk3MzI2NTE2NiIsInJvbGVzIjpbIlVTRVIiXSwiaWF0IjoxNzM1NDcwMjcwLCJleHAiOjE4MjE4NzAyNzB9.yShV2blWxuAf1jAZ90vCKO8BUYz2eIXDKWHizpItLx4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"67716364bffb35a1df40554f\",\n    \"budget\": 250,\n    \"status\": \"UNDER_JOB_MARKET\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/design-jobs",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"design-jobs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-design-job-by-id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NzExNDhlZmE2MzY3OWY2YmI2YzEzNyIsInBob25lTnVtYmVyIjoiMDk3MzI2NTE2NiIsInJvbGVzIjpbIlVTRVIiXSwiaWF0IjoxNzM1NDcwMjcwLCJleHAiOjE4MjE4NzAyNzB9.yShV2blWxuAf1jAZ90vCKO8BUYz2eIXDKWHizpItLx4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"67716364bffb35a1df40554f\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/get-design-job-by-id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"get-design-job-by-id"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-design-job",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NzExNDhlZmE2MzY3OWY2YmI2YzEzNyIsInBob25lTnVtYmVyIjoiMDk3MzI2NTE2NiIsInJvbGVzIjpbIlVTRVIiXSwiaWF0IjoxNzM1NDcwMjcwLCJleHAiOjE4MjE4NzAyNzB9.yShV2blWxuAf1jAZ90vCKO8BUYz2eIXDKWHizpItLx4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"67716364bffb35a1df40554f\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/design-jobs",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"design-jobs"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Upload Image",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NzExNDhlZmE2MzY3OWY2YmI2YzEzNyIsInBob25lTnVtYmVyIjoiMDk3MzI2NTE2NiIsInJvbGVzIjpbIlVTRVIiXSwiaWF0IjoxNzM1NDgxNTA2LCJleHAiOjE4MjE4ODE1MDZ9.TldfFMz2zMH81JAkiWfnFqrkDR_GMi6iryhfY2pfkp8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/thon/Desktop/test-pic.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/files/upload-image",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"files",
+						"upload-image"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
