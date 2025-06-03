@@ -5,8 +5,22 @@ const AdvertisementSpaceSchema = new Schema(
     ownerId: { type: String, required: true },
     name: { type: String, required: true },
     description: { type: String, required: true },
-    latitude: { type: Number, required: true },
-    longitude: { type: Number, required: true },
+    latitude: {
+      type: Number,
+      required: true,
+      validate: {
+        validator: (val: number) => /^-?\d+(\.\d{1,6})?$/.test(val.toString()),
+        message: 'Latitude must have up to 3 decimal places',
+      },
+    },
+    longitude: {
+      type: Number,
+      required: true,
+      validate: {
+        validator: (val: number) => /^-?\d+(\.\d{1,6})?$/.test(val.toString()),
+        message: 'Latitude must have up to 3 decimal places',
+      },
+    },
     width: { type: Number, required: true },
     height: { type: Number, required: true },
     imagePaths: [{ type: String, required: false }],
@@ -19,7 +33,7 @@ export type IAdvertisementSpaceStatus =
   | 'INACTIVE'
   | 'AVAILABLE'
   | 'UNDER_RENT_MARKET'
-  | 'RENTED'
+  | 'RENTED';
 
 export interface IAdvertisementSpace extends Document {
   _id: string;

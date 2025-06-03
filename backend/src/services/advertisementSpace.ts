@@ -70,6 +70,7 @@ const getAllAdvertisementSpaces = async (
       $and: [
         { name: { $regex: name, $options: 'i' } },
         { description: { $regex: description, $options: 'i' } },
+        { status: { $ne: 'INACTIVE' } }, // Exclude inactive spaces
       ],
     });
     return {

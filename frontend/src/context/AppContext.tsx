@@ -1,13 +1,18 @@
 "use client";
 
-import { IUser } from "@/utils/api";
+import { IUser } from "@/api-services/api";
 import { getCookie } from "cookies-next";
 import { usePathname } from "next/navigation";
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 type AppContextType = {
   user: IUser | null;
-  setUser: (user: IUser | null) => void;
+  token: string;
+  errorMsg?: string;
+  successMsg?: string;
+  setErrorMsg: (msg: string) => void;
+  setSuccessMsg: (msg: string) => void;
+  setUserWithToken: (user: IUser | null, token: string) => void;
 };
 
 type AppProviderProps = {
@@ -18,13 +23,23 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [user, setUser] = useState<IUser | null>(null);
+  const [token, setToken] = useState<string>("");
+  const [errorMsg, setErrorMsg] = useState<string>("");
+  const [successMsg, setSuccessMsg] = useState<string>("");
+
+  const setUserWithToken = (user: IUser | null, token: string) => {
+    setUser(user);
+    setToken(token);
+  };
   const pathname = usePathname();
 
   useEffect(() => {
     const checkIfLoggedIn = async () => {
       const userPayload = await getCookie("payload");
       if (userPayload) {
-        setUser(JSON.parse(userPayload).data.user);
+        const userData = JSON.parse(userPayload).data;
+        setUser(userData.user);
+        setToken(userData.accessToken);
 
         if (pathname !== "/") {
           window.location.href = "/";
@@ -35,7 +50,17 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   }, []);
 
   return (
-    <AppContext.Provider value={{ user, setUser }}>
+    <AppContext.Provider
+      value={{
+        user,
+        token,
+        errorMsg,
+        setErrorMsg,
+        successMsg,
+        setSuccessMsg,
+        setUserWithToken,
+      }}
+    >
       {children}
     </AppContext.Provider>
   );

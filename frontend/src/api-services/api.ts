@@ -1,4 +1,4 @@
-import { env } from "./env";
+import { env } from "../utils/env";
 
 export type UserRoles = "ADMIN" | "USER";
 

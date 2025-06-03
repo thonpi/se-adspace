@@ -1,7 +1,7 @@
 "use client";
 
 import { useAppContext } from "@/context/AppContext";
-import { IUser, logout } from "@/utils/api";
+import { IUser, logout } from "@/api-services/api";
 import { deleteCookie, getCookie } from "cookies-next";
 import Link from "next/link";
 

@@ -45,9 +45,8 @@ router
   .route('/advertisement-spaces')
   .get(advertisementSpacePagination)
   .post(createAdvertisementSpace)
-  .put(updateAdvertisementSpace)
-  .delete(deleteAdvertisementSpace);
-router.route('/get-all-advertisement-spaces').get(getAllAdvertisementSpaces);
+  .put(updateAdvertisementSpace);
+router.route('/advertisement-spaces/:id').delete(deleteAdvertisementSpace);
 
 // Rental space routes
 router
@@ -62,11 +61,11 @@ router.route('/get-rental-space-by-id').get(getRentalSpaceById);
 
 // Design job routes
 router
-.route('/design-jobs')
-.get(designJobPagination)
-.post(createDesignJob)
-.put(updateDesignJob)
-.delete(deleteDesignJob);
+  .route('/design-jobs')
+  .get(designJobPagination)
+  .post(createDesignJob)
+  .put(updateDesignJob)
+  .delete(deleteDesignJob);
 
 router.route('/get-all-design-jobs').get(getAllDesignJobs);
 router.route('/get-design-job-by-id').get(getDesignJobById);

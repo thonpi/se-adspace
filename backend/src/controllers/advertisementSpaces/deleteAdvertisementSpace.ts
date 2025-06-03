@@ -9,10 +9,13 @@ const advertisementSpaceSchema = Joi.object({
 
 const deleteAdvertisementSpace = async (req: Request, res: Response) => {
   try {
-    const validatedBody = validateJoiSchema(advertisementSpaceSchema, req.body);
+    const validatedParams = validateJoiSchema(
+      advertisementSpaceSchema,
+      req.params
+    );
 
     const resData = await advertisementSpaceService.deleteAdvertisementSpace(
-      validatedBody.id
+      validatedParams.id
     );
     res.status(200).json({
       code: 200,

@@ -1,13 +1,13 @@
 "use client";
 
 import { useAppContext } from "@/context/AppContext";
-import { register } from "@/utils/api";
+import { register } from "@/api-services/api";
 import { getCookie, setCookie } from "cookies-next";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 function Register() {
-  const { setUser } = useAppContext();
+  const { setUserWithToken } = useAppContext();
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -26,7 +26,7 @@ function Register() {
       setErrorMsg(res.message);
     } else {
       setErrorMsg("");
-      setUser(res.data.user);
+      setUserWithToken(res.data.user, res.data.accessToken);
       setCookie("payload", res, {
         maxAge: 60 * 60 * 24 * 7, // 7 days
       });
@@ -38,7 +38,8 @@ function Register() {
     const checkIfLoggedIn = async () => {
       const userPayload = await getCookie("payload");
       if (userPayload) {
-        setUser(JSON.parse(userPayload).data.user);
+        const userData = JSON.parse(userPayload);
+        setUserWithToken(userData.data.user, userData.data.accessToken);
         window.location.href = "/";
       }
     };
