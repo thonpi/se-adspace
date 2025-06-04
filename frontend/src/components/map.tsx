@@ -94,7 +94,7 @@ export function Map({ storeLocations = [] }: Props) {
             {/* Top Banner Image */}
             <img
               src={
-                "https://cdn.pixabay.com/photo/2024/12/27/14/58/owl-9294302_1280.jpg"
+                "https://t3.ftcdn.net/jpg/14/67/86/34/360_F_1467863416_IROBxeMYwzwxokQBViJI5y5fMjQWxAcs.jpg"
               }
               alt={"Store Banner"}
               style={{
