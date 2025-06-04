@@ -9,16 +9,16 @@ const AdvertisementSpaceSchema = new Schema(
       type: Number,
       required: true,
       validate: {
-        validator: (val: number) => /^-?\d+(\.\d{1,6})?$/.test(val.toString()),
-        message: 'Latitude must have up to 3 decimal places',
+        validator: (val: number) => /^-?\d+(\.\d{1,10})?$/.test(val.toString()),
+        message: 'Latitude must have up to 10 decimal places',
       },
     },
     longitude: {
       type: Number,
       required: true,
       validate: {
-        validator: (val: number) => /^-?\d+(\.\d{1,6})?$/.test(val.toString()),
-        message: 'Latitude must have up to 3 decimal places',
+        validator: (val: number) => /^-?\d+(\.\d{1,10})?$/.test(val.toString()),
+        message: 'Latitude must have up to 10 decimal places',
       },
     },
     width: { type: Number, required: true },

@@ -11,9 +11,7 @@ const createAdvertisementSpace = async (
     );
     return { advertisementSpace };
   } catch (error: any) {
-    throw new Error(
-      `Create advertisement space service error, ${error.message}`
-    );
+    throw new Error(error.message);
   }
 };
 
