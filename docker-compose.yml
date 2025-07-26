@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   # Reverse Proxy / Load Balancer (entry point)
   nginx:
