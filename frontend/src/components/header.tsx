@@ -44,11 +44,6 @@ export function Header() {
               Login
             </button>
           </Link>
-          <Link href="/register">
-            <button type="submit" className="border ml-2 px-4 py-2">
-              Register
-            </button>
-          </Link>
         </>
       )}
     </section>
