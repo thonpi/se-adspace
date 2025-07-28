@@ -6,7 +6,7 @@ import {
   InfoWindow,
   useLoadScript,
 } from "@react-google-maps/api";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { env } from "../utils/env";
 
 interface Props {
@@ -17,9 +17,21 @@ interface Props {
     lng: number;
     description: string;
   }[];
+  selectedSpace: {
+    id: string;
+    name: string;
+    lat: number;
+    lng: number;
+    description: string;
+  } | null;
+  setSelectedSpace: (space: any) => void;
 }
 
-export function Map({ storeLocations = [] }: Props) {
+export function Map({
+  storeLocations = [],
+  selectedSpace,
+  setSelectedSpace,
+}: Props) {
   // Load the Google Maps script with the provided API key
   const { isLoaded, loadError } = useLoadScript({
     id: "google-map-script",
@@ -28,6 +40,13 @@ export function Map({ storeLocations = [] }: Props) {
   });
 
   const [selectedStore, setSelectedStore] = useState<any>(null); // Track the selected store
+
+  useEffect(() => {
+    if (selectedSpace) {
+      setSelectedStore(selectedSpace);
+      setSelectedSpace(null);
+    }
+  }, [selectedSpace]);
 
   if (loadError) {
     return (
@@ -72,7 +91,9 @@ export function Map({ storeLocations = [] }: Props) {
           key={store.id}
           position={{ lat: store.lat, lng: store.lng }}
           title={store.name}
-          onClick={() => setSelectedStore(store)} // Set the clicked store to state
+          onClick={() => {
+            setSelectedStore(store);
+          }} // Set the clicked store to state
         />
       ))}
 

@@ -9,8 +9,10 @@ import { getAdSpaces } from "@/api-services/advertisement-space";
 
 export function Content({
   setStoreLocations,
+  onViewOnMap,
 }: {
   setStoreLocations: (locations: any[]) => void;
+  onViewOnMap: (space: AdvertisementSpace) => void;
 }) {
   const { user, token, setErrorMsg } = useAppContext();
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -83,6 +85,7 @@ export function Content({
             key={space._id}
             space={space}
             userId={user?._id}
+            onViewOnMap={() => onViewOnMap(space)}
             onDeleteSuccess={(id) => {
               setAdvertisementSpaces((prev) =>
                 prev.filter((s) => s._id !== id)

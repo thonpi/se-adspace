@@ -5,6 +5,7 @@ import { deleteAdSpace } from "@/api-services/advertisement-space";
 interface Props {
   space: AdvertisementSpace;
   userId?: string;
+  onViewOnMap?: (space: AdvertisementSpace) => void;
   onEdit?: (space: AdvertisementSpace) => void;
   onDeleteSuccess: (id: string) => void;
 }
@@ -12,6 +13,7 @@ interface Props {
 export function AdvertisementSpaceCard({
   space,
   userId = "",
+  onViewOnMap,
   onDeleteSuccess,
 }: Props) {
   const { setErrorMsg, setSuccessMsg, token } = useAppContext();
@@ -82,7 +84,9 @@ export function AdvertisementSpaceCard({
         <button
           className="text-black dark:text-white ml-2 p-2 hover:bg-gray-600 border transition"
           onClick={() => {
-            setErrorMsg("View on Map Functionality is COMING SOON !!!");
+            if (onViewOnMap) {
+              onViewOnMap(space);
+            }
           }}
         >
           View on Map
