@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import {
   AdSpaceStatusEnum,
   createAdSpace,
+  updateAdSpace,
 } from "@/api-services/advertisement-space";
 import { AdvertisementSpace } from "./interfaces";
 
@@ -14,6 +15,8 @@ interface Props {
   onClose: () => void;
   token: string;
   userId?: string;
+  editingSpace?: AdvertisementSpace | null; // Optional space to edit
+  onEditSuccess?: () => void; // Optional callback for edit success
   onSuccess?: () => void; // Optional callback for success
   onError?: (msg: string) => void; // Optional callback for error handling
 }
@@ -51,32 +54,53 @@ export default function CreateAdvertisementModal({
   onClose,
   token,
   userId = "",
+  editingSpace = null,
+  onEditSuccess = () => {},
   onSuccess = () => {},
   onError = (msg: string) => {},
 }: Props) {
   const [loading, setLoading] = useState(false);
 
   const formik = useFormik({
-    initialValues: {
-      ownerId: userId,
-      name: "",
-      description: "",
-      latitude: 0,
-      longitude: 0,
-      width: 0,
-      height: 0,
-      imagePaths: [],
-      status: AdSpaceStatusEnum.AVAILABLE,
-    } as unknown as AdvertisementSpace,
+    enableReinitialize: true, // Reinitialize form values when editingSpace changes
+    initialValues: editingSpace
+      ? ({
+          ownerId: userId,
+          name: editingSpace.name,
+          description: editingSpace.description,
+          latitude: editingSpace.latitude,
+          longitude: editingSpace.longitude,
+          width: editingSpace.width,
+          height: editingSpace.height,
+          imagePaths: editingSpace.imagePaths,
+          status: editingSpace.status,
+        } as unknown as AdvertisementSpace)
+      : ({
+          ownerId: userId,
+          name: "",
+          description: "",
+          latitude: 0,
+          longitude: 0,
+          width: 0,
+          height: 0,
+          imagePaths: [],
+          status: AdSpaceStatusEnum.AVAILABLE,
+        } as unknown as AdvertisementSpace),
     validationSchema,
     onSubmit: async (values) => {
       setLoading(true);
       try {
-        const res = await createAdSpace({ ...values, ownerId: userId }, token);
+        const res = editingSpace
+          ? await updateAdSpace({ id: editingSpace._id, ...values }, token)
+          : await createAdSpace({ ...values, ownerId: userId }, token);
         if (res.code === 201) {
           formik.resetForm();
           onClose();
           onSuccess();
+        } else if (editingSpace && res.code === 200) {
+          formik.resetForm();
+          onClose();
+          onEditSuccess();
         } else {
           onError(res.message || "Failed to create advertisement space");
         }
@@ -111,7 +135,11 @@ export default function CreateAdvertisementModal({
         >
           &times;
         </button>
-        <h2 className="text-xl font-semibold mb-4 text-left">Create Space</h2>
+        <h2 className="text-xl font-semibold mb-4 text-left">
+          {editingSpace
+            ? "Edit Space"
+            : "Create Space"}
+        </h2>
 
         <form onSubmit={formik.handleSubmit} className="space-y-4">
           {fields.map(([field, label]) => (

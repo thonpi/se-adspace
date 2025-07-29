@@ -45,6 +45,22 @@ export const createAdSpace = async (
   return res.json();
 };
 
+type EditableAdvertisementSpace = Partial<IAdvertisementSpace> & { id: string };
+export const updateAdSpace = async (
+  data: EditableAdvertisementSpace,
+  token: string
+) => {
+  const res = await fetch(BASE_URL, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(data),
+  });
+  return res.json();
+};
+
 // Read all
 export const getAdSpaces = async (
   activeFilters?: string[],

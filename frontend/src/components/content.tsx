@@ -23,6 +23,9 @@ export function Content({
   const [advertisementSpaces, setAdvertisementSpaces] = useState<
     AdvertisementSpace[]
   >([]);
+  const [editingSpace, setEditingSpace] = useState<AdvertisementSpace | null>(
+    null
+  );
 
   const fetchAdvertisementSpaces = async () => {
     try {
@@ -77,9 +80,18 @@ export function Content({
       </button>
       <CreateAdvertisementModal
         isOpen={isAddModalOpen}
-        onClose={() => setIsAddModalOpen(false)}
+        onClose={() => {
+          setIsAddModalOpen(false);
+          setEditingSpace(null);
+        }}
         userId={user?._id}
         token={token}
+        editingSpace={editingSpace}
+        onEditSuccess={() => {
+          setEditingSpace(null);
+          setIsAddModalOpen(false);
+          fetchAdvertisementSpaces();
+        }}
         onSuccess={() => {
           // Add "From Me" filter ensure user see their created space
           if (!activeFilters.includes("From Me")) {
@@ -98,6 +110,10 @@ export function Content({
             space={space}
             userId={user?._id}
             onViewOnMap={() => onViewOnMap(space)}
+            onEdit={(space) => {
+              setEditingSpace(space);
+              setIsAddModalOpen(true);
+            }}
             onDeleteSuccess={(id) => {
               setAdvertisementSpaces((prev) =>
                 prev.filter((s) => s._id !== id)

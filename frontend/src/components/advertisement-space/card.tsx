@@ -6,7 +6,7 @@ interface Props {
   space: AdvertisementSpace;
   userId?: string;
   onViewOnMap?: (space: AdvertisementSpace) => void;
-  onEdit?: (space: AdvertisementSpace) => void;
+  onEdit: (space: AdvertisementSpace) => void;
   onDeleteSuccess: (id: string) => void;
 }
 
@@ -15,8 +15,15 @@ export function AdvertisementSpaceCard({
   userId = "",
   onViewOnMap,
   onDeleteSuccess,
+  onEdit,
 }: Props) {
   const { setErrorMsg, setSuccessMsg, token } = useAppContext();
+
+  const handleEditClick = (space: AdvertisementSpace) => {
+    if (onEdit) {
+      onEdit(space);
+    }
+  };  
 
   const handleDeleteClick = async () => {
     if (!confirm("Are you sure you want to delete this advertisement space?"))
@@ -65,9 +72,7 @@ export function AdvertisementSpaceCard({
             </button>
             <button
               className="text-black dark:text-white p-2 hover:bg-gray-600 underline transition"
-              onClick={() => {
-                setErrorMsg("Edit Functionality is COMING SOON !!!");
-              }}
+              onClick={() => handleEditClick(space)}
             >
               edit
             </button>
