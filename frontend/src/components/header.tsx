@@ -4,7 +4,6 @@ import { useAppContext } from "@/context/AppContext";
 import { logout } from "@/api-services/api";
 import { deleteCookie, getCookie } from "cookies-next";
 import Link from "next/link";
-import { useEffect } from "react";
 
 export enum SPACE_FILTER_OPTIONS {
   FROM_OTHERS = "From Others",
@@ -70,7 +69,7 @@ export function Header({ activeFilters, toggleFilter }: HeaderProps) {
               className={`px-4 py-2 border rounded ${
                 activeFilters.includes(filter)
                   ? "bg-blue-500 text-white"
-                  : "bg-gray-100 text-black"
+                  : "border text-white"
               }`}
             >
               {filter}

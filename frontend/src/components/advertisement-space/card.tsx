@@ -25,6 +25,15 @@ export function AdvertisementSpaceCard({
     }
   };
 
+
+  // TODO: Implement email notification logic
+  // This is a placeholder function to simulate sending an interest alert
+  const handleSendInterestAlert = () => {
+    if (!confirm("Do you really want to send interest?")) return;
+
+    setSuccessMsg("We've notified the owner of your interest, successfully!");
+  };
+
   const handleDeleteClick = async () => {
     if (!confirm("Are you sure you want to delete this advertisement space?"))
       return;
@@ -81,11 +90,19 @@ export function AdvertisementSpaceCard({
         {space.ownerId !== userId && (
           <button
             className="text-black dark:text-white p-2 hover:bg-gray-600 underline transition"
+            onClick={handleSendInterestAlert}
+          >
+            Send Interest Alert
+          </button>
+        )}
+        {space.ownerId === userId && (
+          <button
+            className="text-black dark:text-white p-2 hover:bg-gray-600 underline transition"
             onClick={() => {
-              setErrorMsg("Open Discussion Functionality is COMING SOON !!!");
+              setErrorMsg("The process of putting into market is COMING SOON !!!");
             }}
           >
-            Open Discussion
+            Put Into Market
           </button>
         )}
         <button

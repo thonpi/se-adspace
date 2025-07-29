@@ -15,10 +15,7 @@ export default function Home() {
   const [selectedSpace, setSelectedSpace] = useState<AdvertisementSpace | null>(
     null
   );
-  const [activeFilters, setActiveFilters] = useState<string[]>([
-    "From Me",
-    "From Others",
-  ]);
+  const [activeFilters, setActiveFilters] = useState<string[]>([]);
   const toggleFilter = (filter: string) => {
     setActiveFilters((prev) =>
       prev.includes(filter)
