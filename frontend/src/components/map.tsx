@@ -16,6 +16,8 @@ interface Props {
     lat: number;
     lng: number;
     description: string;
+    width: number;
+    height: number;
   }[];
   selectedSpace: {
     id: string;
@@ -23,6 +25,8 @@ interface Props {
     lat: number;
     lng: number;
     description: string;
+    width: number;
+    height: number;
   } | null;
   setSelectedSpace: (space: any) => void;
 }
@@ -126,6 +130,11 @@ export function Map({
             />
 
             <h3 className="my-2 font-bold">{selectedStore.name}</h3>
+            {selectedStore.width && selectedStore.height && (
+              <p className="text-sm text-gray-600">
+                {selectedStore.width} x {selectedStore.height} m
+              </p>
+            )}
             <p>{selectedStore.description}</p>
           </div>
         </InfoWindow>

@@ -56,6 +56,8 @@ export default function Home() {
                     lat: selectedSpace.latitude,
                     lng: selectedSpace.longitude,
                     description: selectedSpace.description,
+                    width: selectedSpace.width,
+                    height: selectedSpace.height,
                   }
                 : null
             }

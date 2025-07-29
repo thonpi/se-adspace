@@ -38,6 +38,8 @@ export function Content({
           lat: space.latitude,
           lng: space.longitude,
           description: space.description,
+          width: space.width,
+          height: space.height,
         }))
       );
     } catch (error) {
