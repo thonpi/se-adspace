@@ -10,7 +10,6 @@ import createAdvertisementSpace from '../controllers/advertisementSpaces/createA
 import updateAdvertisementSpace from '../controllers/advertisementSpaces/updateAdvertisementSpace';
 import deleteAdvertisementSpace from '../controllers/advertisementSpaces/deleteAdvertisementSpace';
 import advertisementSpacePagination from '../controllers/advertisementSpaces/advertisementSpacePagination';
-import getAllAdvertisementSpaces from '../controllers/advertisementSpaces/getAllAdvertisementSpaces';
 import getAdvertisementSpaceById from '../controllers/advertisementSpaces/getAdvertisementSpaceById';
 import createRentalSpace from '../controllers/rentalSpaces/createRentalSpace';
 import rentalSpacePagination from '../controllers/rentalSpaces/rentalSpacePagination';

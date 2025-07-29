@@ -58,18 +58,36 @@ const deleteAdvertisementSpace = async (id: string) => {
 };
 
 const getAllAdvertisementSpaces = async (
-  params: Pick<AdvertisementSpacePaginationParams, 'search'>
+  params: Pick<AdvertisementSpacePaginationParams, 'search'>,
+  filters: {
+    ownerId: string;
+    options: string[];
+  }
 ) => {
   try {
     const {
       search: { name, description },
     } = params;
+    const { ownerId, options } = filters;
+    const ownerFilter =
+      ownerId && options.includes('From Me') && !options.includes('From Others')
+        ? { ownerId }
+        : ownerId &&
+          !options.includes('From Me') &&
+          options.includes('From Others')
+        ? { ownerId: { $ne: ownerId } }
+        : null;
+
+    const query: any = [
+      { name: { $regex: name, $options: 'i' } },
+      { description: { $regex: description, $options: 'i' } },
+      { status: { $ne: 'INACTIVE' } }, // Exclude inactive spaces
+    ];
+    if (ownerFilter) {
+      query.push(ownerFilter);
+    }
     const advertisementSpaces = await AdvertisementSpaceModel.find({
-      $and: [
-        { name: { $regex: name, $options: 'i' } },
-        { description: { $regex: description, $options: 'i' } },
-        { status: { $ne: 'INACTIVE' } }, // Exclude inactive spaces
-      ],
+      $and: query,
     });
     return {
       advertisementSpaces,

@@ -46,8 +46,16 @@ export const createAdSpace = async (
 };
 
 // Read all
-export const getAdSpaces = async () => {
-  const res = await fetch(BASE_URL_ALL);
+export const getAdSpaces = async (
+  activeFilters?: string[],
+  ownerId?: string
+) => {
+  const res = await fetch(
+    `${BASE_URL_ALL}?${new URLSearchParams({
+      ownerId: ownerId || "",
+      options: activeFilters ? activeFilters.join(",") : "",
+    })}`
+  );
   return res.json();
 };
 

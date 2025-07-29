@@ -8,9 +8,13 @@ import CreateAdvertisementModal from "./advertisement-space/create-modal";
 import { getAdSpaces } from "@/api-services/advertisement-space";
 
 export function Content({
+  setActiveFilters,
+  activeFilters,
   setStoreLocations,
   onViewOnMap,
 }: {
+  setActiveFilters: (filters: string[]) => void;
+  activeFilters: string[];
   setStoreLocations: (locations: any[]) => void;
   onViewOnMap: (space: AdvertisementSpace) => void;
 }) {
@@ -22,7 +26,7 @@ export function Content({
 
   const fetchAdvertisementSpaces = async () => {
     try {
-      const response = await getAdSpaces();
+      const response = await getAdSpaces(activeFilters, user?._id);
       if (!response.code || response.code !== 200) {
         throw new Error("Failed to fetch advertisement spaces");
       }
@@ -46,7 +50,7 @@ export function Content({
   useEffect(() => {
     // Fetch advertisement spaces from the API
     fetchAdvertisementSpaces();
-  }, []);
+  }, [activeFilters]);
 
   return (
     <div className="h-full max-h-full text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
@@ -74,7 +78,13 @@ export function Content({
         onClose={() => setIsAddModalOpen(false)}
         userId={user?._id}
         token={token}
-        onSuccess={fetchAdvertisementSpaces} // Callback to refresh spaces after creation
+        onSuccess={() => {
+          // Add "From Me" filter ensure user see their created space
+          if (!activeFilters.includes("From Me")) {
+            setActiveFilters([...activeFilters, "From Me"]);
+          }
+          fetchAdvertisementSpaces();
+        }} // Callback to refresh spaces after creation
         onError={(error) => setErrorMsg(error)}
       />
 

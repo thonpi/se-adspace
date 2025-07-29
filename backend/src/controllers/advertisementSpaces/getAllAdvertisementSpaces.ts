@@ -3,12 +3,18 @@ import advertisementSpaceService from '../../services/advertisementSpace';
 
 const getAllAdvertisementSpaces = async (req: Request, res: Response) => {
   try {
-    const resData = await advertisementSpaceService.getAllAdvertisementSpaces({
-      search: {
-        name: req.query.name || ('' as any),
-        description: req.query.description || ('' as any),
+    const resData = await advertisementSpaceService.getAllAdvertisementSpaces(
+      {
+        search: {
+          name: req.query.name || ('' as any),
+          description: req.query.description || ('' as any),
+        },
       },
-    });
+      {
+        ownerId: (req.query.ownerId as string) || '',
+        options: (req.query.options as string).split(',') || [],
+      }
+    );
     res.status(200).json({
       code: 200,
       message: 'Get all advertisement spaces successfully',
