@@ -61,21 +61,23 @@ export function Header({ activeFilters, toggleFilter }: HeaderProps) {
       </div>
 
       {/* Right: Filter Menu */}
-      <div className="flex items-center space-x-4">
-        {Object.values(SPACE_FILTER_OPTIONS).map((filter) => (
-          <button
-            key={filter}
-            onClick={() => toggleFilter(filter)}
-            className={`px-4 py-2 border rounded ${
-              activeFilters.includes(filter)
-                ? "bg-blue-500 text-white"
-                : "bg-gray-100 text-black"
-            }`}
-          >
-            {filter}
-          </button>
-        ))}
-      </div>
+      {user && (
+        <div className="flex items-center space-x-4">
+          {Object.values(SPACE_FILTER_OPTIONS).map((filter) => (
+            <button
+              key={filter}
+              onClick={() => toggleFilter(filter)}
+              className={`px-4 py-2 border rounded ${
+                activeFilters.includes(filter)
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-100 text-black"
+              }`}
+            >
+              {filter}
+            </button>
+          ))}
+        </div>
+      )}
     </section>
   );
 }

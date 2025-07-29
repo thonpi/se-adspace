@@ -23,7 +23,7 @@ export function AdvertisementSpaceCard({
     if (onEdit) {
       onEdit(space);
     }
-  };  
+  };
 
   const handleDeleteClick = async () => {
     if (!confirm("Are you sure you want to delete this advertisement space?"))
@@ -78,14 +78,16 @@ export function AdvertisementSpaceCard({
             </button>
           </>
         )}
-        <button
-          className="text-black dark:text-white p-2 hover:bg-gray-600 underline transition"
-          onClick={() => {
-            setErrorMsg("Open Discussion Functionality is COMING SOON !!!");
-          }}
-        >
-          Open Discussion
-        </button>
+        {space.ownerId !== userId && (
+          <button
+            className="text-black dark:text-white p-2 hover:bg-gray-600 underline transition"
+            onClick={() => {
+              setErrorMsg("Open Discussion Functionality is COMING SOON !!!");
+            }}
+          >
+            Open Discussion
+          </button>
+        )}
         <button
           className="text-black dark:text-white ml-2 p-2 hover:bg-gray-600 border transition"
           onClick={() => {
