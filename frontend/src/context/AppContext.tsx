@@ -41,9 +41,9 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         setUser(userData.user);
         setToken(userData.accessToken);
 
-        if (pathname !== "/") {
-          window.location.href = "/";
-        }
+        // if (pathname !== "/") {
+        //   window.location.href = "/";
+        // }
       }
     };
     checkIfLoggedIn();
